@@ -1,10 +1,16 @@
-name: 'Node 12 Template Action'
-description: 'Get started with Node actions'
-author: 'GitHub'
+name: 'dacpac-deploy'
+description: 'This action deploys a database schema using a dacpac'
+author: 'abelsquidhead'
 inputs:
-  myInput:
-    description: 'Input to use'
-    default: 'world'
+  connectionString: 
+    description: 'Connection string to the SQL Server database'
+    required: true
+  dacpac:
+    description: 'Path to the dacpac file.'
+    required: true
+  additionalArguments:
+    description: 'Additional SqlPackage.exe arguments that will be applied when deploying the SQL Database'
+    required: false
 runs:
   using: 'node12'
   main: 'lib/main.js'
