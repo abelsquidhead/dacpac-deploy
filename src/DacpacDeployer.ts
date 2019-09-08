@@ -27,13 +27,8 @@ export class DacpacDeployer {
         console.log("workspace: " + workspacePath);
         console.log("");
 
-        try {
-            await exec.exec("sqlpackage.exe /Action:Publish /SourceFile:\"" + workspacePath + "\\" + this.dacpac + "\" /TargetConnectionString:" + this.connectionString + "\" " + this.additionalArguments);
-        }
-        catch(err) {
-            console.log ("dacpac deployment failed: ")
-            console.log(err);
-        }
+        // call sql package.exe
+        await exec.exec("sqlpackage.exe /Action:Publish /SourceFile:\"" + workspacePath + "\\" + this.dacpac + "\" /TargetConnectionString:" + this.connectionString + "\" " + this.additionalArguments);
         console.log("done updating database");
     }
 }
