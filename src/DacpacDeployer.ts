@@ -14,7 +14,7 @@ export class DacpacDeployer {
 
     }
 
-    deploy():void {
+    async deploy() {
         // add sql package.exe to path
         core.addPath('C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\Common7\\IDE\\Extensions\\Microsoft\\SQLDB\\DAC\\150');
 
@@ -27,7 +27,7 @@ export class DacpacDeployer {
         console.log("workspace: " + workspacePath);
         console.log("");
 
-        exec.exec("sqlpackage.exe /Action:Publish /SourceFile:\"" + workspacePath + "\\" + this.dacpac + "\" /TargetConnectionString:" + this.connectionString + "\" " + this.additionalArguments);
+        await exec.exec("sqlpackage.exe /Action:Publish /SourceFile:\"" + workspacePath + "\\" + this.dacpac + "\" /TargetConnectionString:" + this.connectionString + "\" " + this.additionalArguments);
         console.log("done updating database");
     }
 }
