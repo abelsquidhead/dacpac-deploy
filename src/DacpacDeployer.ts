@@ -30,7 +30,13 @@ export class DacpacDeployer {
         // call sql package.exe
         let commandString = "sqlpackage.exe /Action:Publish /SourceFile:\"" + workspacePath + "\\" + this.dacpac + "\" /TargetConnectionString:\"" + this.connectionString + "\" " + this.additionalArguments;
         console.log("command string: " + commandString);
-        await exec.exec(commandString);
+        try {
+            await exec.exec(commandString);
+        }
+        catch(resultError) {
+            core.error("Could not deploy dacpac:");
+            core.error(resultError);
+        }
         console.log("done updating database");
     }
 }
