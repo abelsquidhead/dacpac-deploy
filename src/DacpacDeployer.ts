@@ -35,9 +35,8 @@ export class DacpacDeployer {
                 console.log("done updating database");
             })
             .catch(e => {
-                core.error(e);
                 console.log("done updating database")  
-                core.setFailed("Action failed with ${e}");
+                core.setFailed(`Action failed with ${e}`);
             });
 
     }
