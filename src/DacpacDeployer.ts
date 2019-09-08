@@ -14,7 +14,7 @@ export class DacpacDeployer {
 
     }
 
-    async deploy() {
+    deploy(): void {
         // add sql package.exe to path
         core.addPath('C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\Common7\\IDE\\Extensions\\Microsoft\\SQLDB\\DAC\\150');
 
@@ -35,9 +35,9 @@ export class DacpacDeployer {
                 console.log("done updating database");
             })
             .catch(e => {
-                core.error("Could not deploy dacpac:");
                 core.error(e);
                 console.log("done updating database")  
+                core.setFailed("Action failed with ${e}");
             });
 
     }
