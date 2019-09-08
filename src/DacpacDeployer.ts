@@ -27,7 +27,7 @@ export class DacpacDeployer {
         console.log("workspace: " + workspacePath);
         console.log("");
 
-        exec.exec("sqlpackage.exe /Action:Publish /SourceFile:\"" + workspacePath + "\\" + this.dacpac + "\" /TargetConnectionString:\"" + this.connectionString + "\" " + this.additionalArguments);
+        exec.exec("sqlpackage.exe /Action:Publish /SourceFile:" + workspacePath + "\\" + this.dacpac + " /TargetConnectionString:" + this.connectionString + " " + this.additionalArguments);
         console.log("done updating database");
     }
 }
