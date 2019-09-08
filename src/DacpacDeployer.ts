@@ -23,14 +23,11 @@ export class DacpacDeployer {
         console.log("connectionString: " + this.connectionString);
         console.log("dacpac: " + this.dacpac);
         console.log("additionalArguments: " + this.additionalArguments);
-        console.log("");
-        console.log("getting working directory...");
         let workspacePath = process.env.GITHUB_WORKSPACE;
         console.log("workspace: " + workspacePath);
         console.log("");
 
-
-//        exec.exec("sqlpackage.exe /Action:Publish /SourceFile:\"" + this.dacpac + "\" /TargetConnectionString:\"" + this.connectionString + "\" " + this.additionalArguments);
+        exec.exec("sqlpackage.exe /Action:Publish /SourceFile:\"" + workspacePath + "\\" + this.dacpac + "\" /TargetConnectionString:\"" + this.connectionString + "\" " + this.additionalArguments);
         console.log("done updating database");
     }
 }
