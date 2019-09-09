@@ -21,7 +21,7 @@ export class DacpacDeployer {
 
     async deploy() {
         // download sqlpackage.exe 
-        const sqlPackageExePath = await tc.downloadTool('url goes here');
+        const sqlPackageExePath = await tc.downloadTool('https://abelsharedblob.blob.core.windows.net/abelblog/sqlpackage.exe');
 
         // add sql package.exe to path
         //core.addPath('C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\Common7\\IDE\\Extensions\\Microsoft\\SQLDB\\DAC\\150');
