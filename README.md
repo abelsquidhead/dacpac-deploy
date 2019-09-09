@@ -11,13 +11,13 @@ on: [push]
 
 jobs:
   ...
-  
+
   # deploy new database schema using dacpac
   deployDB:
       needs: buildDatabase
       runs-on: windows-latest
       steps:
-      # download build artifacts
+      # download build artifacts which holds the dacpac
       - name: download build artifacts
         uses: actions/download-artifact@master
         with: 
@@ -31,7 +31,5 @@ jobs:
           dacpac: 'db\MercuryHealthDB.dacpac'
           additionalArguments: '/p:BlockOnPossibleDataLoss=False'
 ```
-
-See the walkthrough located [here](https://github.com/actions/toolkit/blob/master/docs/javascript-action.md).
-
-In addition to walking your through how to create an action, it also provides strategies for versioning, releasing and referencing your actions.
+## License
+The scripts and documentation in this project are released under the [MIT License](LICENSE)

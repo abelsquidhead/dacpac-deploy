@@ -1,8 +1,7 @@
 import * as core from '@actions/core';
 import * as exec from '@actions/exec';
+const tc = require('@actions/tool-cache');
 
-
-    
 export class DacpacDeployer {
     connectionString: string;
     dacpac: string;
@@ -20,9 +19,12 @@ export class DacpacDeployer {
         this.workspacePath = <string>process.env.GITHUB_WORKSPACE;
     }
 
-    deploy(): void {
+    async deploy() {
+        // download sqlpackage.exe 
+        const sqlPackageExePath = await tc.downloadTool('url goes here');
+
         // add sql package.exe to path
-        core.addPath('C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\Common7\\IDE\\Extensions\\Microsoft\\SQLDB\\DAC\\150');
+        //core.addPath('C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\Common7\\IDE\\Extensions\\Microsoft\\SQLDB\\DAC\\150');
 
         // getting input variables and workspace path to create the command line command string
         console.log("updating database...");
@@ -33,7 +35,8 @@ export class DacpacDeployer {
         console.log("");
 
         // create command string from all the inputs and workspace path
-        let commandString = "sqlpackage.exe /Action:Publish /SourceFile:\"" + this.workspacePath + "\\" + this.dacpac + "\" /TargetConnectionString:\"" + this.connectionString + "\" " + this.additionalArguments;
+        // let commandString = "sqlpackage.exe /Action:Publish /SourceFile:\"" + this.workspacePath + "\\" + this.dacpac + "\" /TargetConnectionString:\"" + this.connectionString + "\" " + this.additionalArguments;
+        let commandString = "\"" + sqlPackageExePath + "\" /Action:Publish /SourceFile:\"" + this.workspacePath + "\\" + this.dacpac + "\" /TargetConnectionString:\"" + this.connectionString + "\" " + this.additionalArguments;
         console.log("command string: " + commandString);
         console.log("");
 
