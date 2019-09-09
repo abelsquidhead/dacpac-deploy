@@ -1,5 +1,7 @@
 import * as core from '@actions/core';
 import * as exec from '@actions/exec';
+
+
     
 export class DacpacDeployer {
     connectionString: string;
@@ -8,6 +10,7 @@ export class DacpacDeployer {
     workspacePath: string;
 
     constructor() {
+
         // get all the inputs
         this.connectionString = core.getInput('connectionString');
         this.dacpac = core.getInput('dacpac');

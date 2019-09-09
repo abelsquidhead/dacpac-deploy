@@ -1,0 +1,2 @@
+
+    var TestHelperConstructorCalled = false;
