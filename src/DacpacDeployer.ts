@@ -22,7 +22,7 @@ export class DacpacDeployer {
     async deploy() {
         // download sqlpackage.exe 
         const sqlPackageExePath = await tc.downloadTool('https://abelsharedblob.blob.core.windows.net/abelblog/sqlpackage.exe');
-
+        core.addPath(sqlPackageExePath);
         // add sql package.exe to path
         //core.addPath('C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\Common7\\IDE\\Extensions\\Microsoft\\SQLDB\\DAC\\150');
 
@@ -36,7 +36,7 @@ export class DacpacDeployer {
 
         // create command string from all the inputs and workspace path
         // let commandString = "sqlpackage.exe /Action:Publish /SourceFile:\"" + this.workspacePath + "\\" + this.dacpac + "\" /TargetConnectionString:\"" + this.connectionString + "\" " + this.additionalArguments;
-        let commandString = "\"" + sqlPackageExePath + "\\sqlpackage.exe\" /Action:Publish /SourceFile:\"" + this.workspacePath + "\\" + this.dacpac + "\" /TargetConnectionString:\"" + this.connectionString + "\" " + this.additionalArguments;
+        let commandString = "sqlpackage.exe /Action:Publish /SourceFile:\"" + this.workspacePath + "\\" + this.dacpac + "\" /TargetConnectionString:\"" + this.connectionString + "\" " + this.additionalArguments;
         console.log("command string: " + commandString);
         console.log("");
 
