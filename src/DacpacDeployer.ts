@@ -36,7 +36,7 @@ export class DacpacDeployer {
 
         // create command string from all the inputs and workspace path
         // let commandString = "sqlpackage.exe /Action:Publish /SourceFile:\"" + this.workspacePath + "\\" + this.dacpac + "\" /TargetConnectionString:\"" + this.connectionString + "\" " + this.additionalArguments;
-        let commandString = "\"" + sqlPackageExePath + "\" /Action:Publish /SourceFile:\"" + this.workspacePath + "\\" + this.dacpac + "\" /TargetConnectionString:\"" + this.connectionString + "\" " + this.additionalArguments;
+        let commandString = "\"" + sqlPackageExePath + "\\sqlpackage.exe\" /Action:Publish /SourceFile:\"" + this.workspacePath + "\\" + this.dacpac + "\" /TargetConnectionString:\"" + this.connectionString + "\" " + this.additionalArguments;
         console.log("command string: " + commandString);
         console.log("");
 
